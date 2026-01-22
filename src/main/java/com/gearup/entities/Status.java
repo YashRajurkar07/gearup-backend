@@ -1,8 +1,10 @@
 package com.gearup.entities;
 
-public enum PaymentStatus {
+public enum Status {
     PENDING,
     SUCCESS,
     FAILED,
-    CANCELLED
+    CANCELLED,
+    CONFIRMED,
+    COMPLETED;
 }

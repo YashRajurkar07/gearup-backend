@@ -1,28 +1,33 @@
 package com.gearup.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "payments")
-@Data
+@AttributeOverride(name="id", column = @Column(name="payment_id"))
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Payment {
+@ToString(callSuper = true)
+public class Payment extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
-
-    @Column(nullable = false, unique = true)
+    @Column(name="transaction_id",nullable = false, unique = true)
     private Long transactionId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private PaymentStatus status;
+    private Status status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -32,5 +37,5 @@ public class Payment {
     private Double amount;
 
     @Column(nullable = false)
-    private LocalDateTime paymentDateTime;
+    private LocalDate paymentDateTime;
 }
