@@ -21,14 +21,17 @@ import lombok.ToString;
 @ToString(callSuper = true, exclude="userDetails")
 public class Owner {
 	
+	@Column(name="alternate_phone")
 	private int alternatePhone;
+	
+	@Column(name="is_verified")
 	private boolean isVerified;
+	
+	@Column(name="registration_number")
 	private String registrationNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id", nullable = false)
 	private User userDetails;
 	
-	
-
 }
