@@ -1,9 +1,11 @@
 package com.gearup.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -15,7 +17,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="garages")
-@AttributeOverride(name="id", column = @Column(name="garage_id"))
+@AttributeOverride(name="id", column = @Column(name="garage_ids"))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,11 +27,11 @@ public class Garage extends BaseEntity{
 	@Column(name="garage_name")
 	private String garageName;
 	
-	
+	@Embedded
 	private Address address;
 	
 	@Column(name= "garage_phone")
-	private int garagePhone;
+	private String garagePhone;
 	
 	@Column(name="total_mechanics")
 	private int totalMechanics;
@@ -42,7 +44,7 @@ public class Garage extends BaseEntity{
 	
 	@OneToMany
 	@JoinColumn(name="timeslot_id")
-	private TimeSlot timeslot;
+	private List<TimeSlot> timeslot;
 	
 
 }

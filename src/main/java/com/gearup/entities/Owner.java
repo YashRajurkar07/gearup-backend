@@ -1,5 +1,7 @@
 package com.gearup.entities;
 
+import java.util.List;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,7 +17,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="garage_owners")
-@AttributeOverride(name="id", column = @Column(name="owner_id"))
+@AttributeOverride(name="id", column = @Column(name="owners_id"))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +25,7 @@ import lombok.ToString;
 public class Owner extends BaseEntity{
 	
 	@Column(name="alternate_phone")
-	private int alternatePhone;
+	private String alternatePhone;
 	
 	@Column(name="is_verified")
 	private boolean isVerified;
@@ -37,6 +39,6 @@ public class Owner extends BaseEntity{
 	
 	@OneToMany
 	@JoinColumn(name="garage_id", nullable=false)
-	private Garage garage;
+	private List<Garage> garage;
 	
 }

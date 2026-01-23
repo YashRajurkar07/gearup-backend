@@ -1,8 +1,9 @@
 package com.gearup.entities;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 
-
+@Embeddable
 public class Address {
 	
 	private String city;

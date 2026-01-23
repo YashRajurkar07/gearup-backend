@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,12 +33,12 @@ public class User extends BaseEntity{
 	private String email;
 	
 	@Column(name="mobile_number")
-	private int mobileNumber;
+	private String mobileNumber;
 	
 	@Column(name = "dob")
 	private LocalDate dateOfBirth;
 	
-	
+	@Embedded
 	private Address address;
 	
 	@Enumerated(EnumType.STRING)

@@ -1,6 +1,6 @@
 package com.gearup.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
@@ -15,7 +15,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "payments")
-@AttributeOverride(name="id", column = @Column(name="payment_id"))
+@AttributeOverride(name="id", column = @Column(name="payment_ids"))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,5 +37,5 @@ public class Payment extends BaseEntity{
     private Double amount;
 
     @Column(nullable = false)
-    private LocalDate paymentDateTime;
+    private LocalDateTime paymentDateTime;
 }

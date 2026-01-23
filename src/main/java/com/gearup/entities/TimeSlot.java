@@ -1,6 +1,6 @@
 package com.gearup.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="timeslots")
-@AttributeOverride(name="id", column=@Column(name="timeslot_id"))
+@AttributeOverride(name="id", column=@Column(name="timeslot_ids"))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,10 +21,10 @@ import lombok.ToString;
 public class TimeSlot extends BaseEntity{
 	
 	@Column(name="start_time", nullable=false)
-	private LocalDate startTime;
+	private LocalDateTime startTime;
 	
 	@Column(name="end_time", nullable=false)
-	private LocalDate EndTime;
+	private LocalDateTime EndTime;
 	
 	@Column(name="is_booked", nullable=false)
 	private boolean isBooked;
