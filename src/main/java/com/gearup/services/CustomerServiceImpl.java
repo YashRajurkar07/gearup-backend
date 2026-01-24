@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 //	Get All Customer Details
 	@Override
-	public List<Customer> getAllCustomers() {
+	public List<Customer> getAllCustomerDetails() {
 		
 		return customerRepo.findAll();
 	}
@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public ApiResponse registerCustomer(CustomerRegDto customerDetails){
 		
-		if(userRepo.existsByEmail(customerDetails.getUserDto().getEmail())) {
+		if(userRepo.existsByEmail(customerDetails.getUserDetails().getEmail())) {
 			throw new ResourceAlreadyExistsException("Email Already Exists, Try Another Email Id");
 		}
 		
@@ -47,6 +47,18 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer persistantData = customerRepo.save(entity);
 		
 		return new ApiResponse("Successfully Added Customer with ID : "+persistantData.getId(), "Success");
+	}
+
+//	Soft Delete Customer Details
+	@Override
+	public ApiResponse deleteCustomerById(Long id) {
+		
+		Customer cust = customerRepo.findById(id).orElseThrow(() -> new ResourceAlreadyExistsException("ID Does Not Exists"));
+		
+		//---------------------------------------------------
+		
+		return new ApiResponse("Customer With ID : "+id+" Deleted Successfully", "Success");
+		
 	}
 
 }

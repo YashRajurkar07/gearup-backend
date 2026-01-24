@@ -20,10 +20,10 @@ public class AdminController {
 
 //	Get All Admin Details
 	@GetMapping("/getalladmins")
-	public ResponseEntity<?> getAdminDetails(){
+	public ResponseEntity<?> getAllAdmins(){
 		
 		System.out.println("Get All Admins Called");
-		return ResponseEntity.ok(adminService.getAllAdmins());
+		return ResponseEntity.ok(adminService.getAllAdminDetails());
 		
 	}
 	

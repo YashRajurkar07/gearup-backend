@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class OwnerDto {
 	
-	private UserDto userDto;
+	private UserDto userDetails;
 
 	private String alternatePhone;
 	

@@ -29,7 +29,7 @@ public class User extends BaseEntity{
 	@Column(name = "last_name", length=50)
 	private String lastName;
 	
-	@Column(length=70, unique=true, nullable= false)
+	@Column(length=70, unique=true)
 	private String email;
 	
 	@Column(name="mobile_number")
@@ -51,5 +51,21 @@ public class User extends BaseEntity{
 	private boolean isActive;
 	
 	private String password;
+
+	public User(String firstName, String lastName, String email, String mobileNumber, LocalDate dateOfBirth,
+			Address address, Gender gender, boolean isActive, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.mobileNumber = mobileNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.address = address;
+		this.gender = gender;
+		this.isActive = isActive;
+		this.password = password;
+	}
+	
+	
 	
 }

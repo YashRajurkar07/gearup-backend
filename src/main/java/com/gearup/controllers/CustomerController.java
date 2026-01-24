@@ -1,10 +1,12 @@
 package com.gearup.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.CustomerRegDto;
@@ -23,7 +25,7 @@ public class CustomerController {
 	@GetMapping("/getallcustomers")
 	public ResponseEntity<?> getAllCustomers(){
 		 System.out.println("Get All Customers Method Called");
-		 return ResponseEntity.ok(customerService.getAllCustomers());
+		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
 	}
 	
 //	Post New Customer Details
@@ -36,6 +38,15 @@ public class CustomerController {
 		
 	}
 	
+//	Soft Delete Customer Details
+	@DeleteMapping("/deletemyaccount/{id}")
+	public ResponseEntity<?> deleteCustomer(@RequestParam Long id){
+		
+		System.out.println("Register Customer Method Called");
+
+		return ResponseEntity.ok(customerService.deleteCustomerById(id));
+		
+	}
 	
 //	@GetMapping("/getmessage")
 //	public String getTitle() {

@@ -23,7 +23,7 @@ public class AdminServiceImpl implements AdminService {
 
 //	Get All Admin Details
 	@Override
-	public List<Admin> getAllAdmins() {
+	public List<Admin> getAllAdminDetails() {
 		
 		return adminRepo.findAll();
 	}

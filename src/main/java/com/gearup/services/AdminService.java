@@ -6,5 +6,5 @@ import com.gearup.entities.Admin;
 
 public interface AdminService {
 
-	List<Admin> getAllAdmins();
+	List<Admin> getAllAdminDetails();
 }
