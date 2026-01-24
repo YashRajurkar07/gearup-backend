@@ -19,21 +19,26 @@ public class CustomerController {
 	
 	private final CustomerService customerService;
 
+//	Get All Customer Details
 	@GetMapping("/getallcustomers")
 	public ResponseEntity<?> getAllCustomers(){
-		 System.out.println("Get All method Called");
+		 System.out.println("Get All Customers Method Called");
 		 return ResponseEntity.ok(customerService.getAllCustomers());
 	}
 	
+//	Post New Customer Details
 	@PostMapping("/register")
 	public ResponseEntity<?> registerData(@RequestBody CustomerRegDto customerDetails){
 		
-		System.out.println("Register Method Called");
+		System.out.println("Register Customer Method Called");
+		
 		return ResponseEntity.ok(customerService.registerCustomer(customerDetails));
+		
 	}
 	
-	@GetMapping("/getmessage")
-	public String getTitle() {
-		return "Success";
-	}
+	
+//	@GetMapping("/getmessage")
+//	public String getTitle() {
+//		return "Success";
+//	}
 }

@@ -6,10 +6,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gearup.customAPIResponse.ApiResponse;
+import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.dtos.CustomerRegDto;
 import com.gearup.entities.Customer;
 import com.gearup.entities.UserRole;
 import com.gearup.repositories.CustomerRepository;
+import com.gearup.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -19,23 +22,31 @@ import lombok.AllArgsConstructor;
 public class CustomerServiceImpl implements CustomerService {
 
 	private final CustomerRepository customerRepo;
-	private ModelMapper mapper;
+	private final UserRepository userRepo;
+	private final ModelMapper mapper;
 	
+//	Get All Customer Details
 	@Override
 	public List<Customer> getAllCustomers() {
 		
 		return customerRepo.findAll();
 	}
 	
+//	Post New Customer Details
 	@Override
-	public String registerCustomer(CustomerRegDto customerDetails) {
+	public ApiResponse registerCustomer(CustomerRegDto customerDetails){
+		
+		if(userRepo.existsByEmail(customerDetails.getUserDto().getEmail())) {
+			throw new ResourceAlreadyExistsException("Email Already Exists, Try Another Email Id");
+		}
 		
 		Customer entity = mapper.map(customerDetails, Customer.class);
 		
 		entity.getUserDetails().setRole(UserRole.ROLE_CUSTOMER);
 		
 		Customer persistantData = customerRepo.save(entity);
-		return "Success"+persistantData.getId();
+		
+		return new ApiResponse("Successfully Added Customer with ID : "+persistantData.getId(), "Success");
 	}
 
 }

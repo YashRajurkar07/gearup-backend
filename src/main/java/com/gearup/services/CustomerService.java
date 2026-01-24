@@ -2,6 +2,8 @@ package com.gearup.services;
 
 import java.util.List;
 
+import com.gearup.customAPIResponse.ApiResponse;
+import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.dtos.CustomerRegDto;
 import com.gearup.entities.Customer;
 
@@ -10,6 +12,6 @@ public interface CustomerService {
 
 	List<Customer> getAllCustomers();
 
-	String registerCustomer(CustomerRegDto customerDetails);
+	ApiResponse registerCustomer(CustomerRegDto customerDetails);
 
 }

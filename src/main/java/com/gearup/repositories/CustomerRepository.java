@@ -6,4 +6,5 @@ import com.gearup.entities.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
+
 }
