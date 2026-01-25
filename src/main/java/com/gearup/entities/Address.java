@@ -12,5 +12,4 @@ public class Address {
 	private String area;
 	private int zipCode;
 	
-	
 }

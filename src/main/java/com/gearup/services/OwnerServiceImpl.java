@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gearup.dtos.UserDto;
 import com.gearup.entities.Owner;
 import com.gearup.repositories.OwnerRepository;
+import com.gearup.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -18,7 +19,7 @@ import lombok.AllArgsConstructor;
 public class OwnerServiceImpl implements OwnerService {
 
 	private final OwnerRepository ownerRepo;
-	private final UserDto userDto;
+	private final UserRepository userRepo;
 	private final ModelMapper mapper;
 	
 //	Get All Owners Details

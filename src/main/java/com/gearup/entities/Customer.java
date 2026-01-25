@@ -25,7 +25,7 @@ public class Customer extends BaseEntity {
 	private String licenseNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name= "user_id")
+	@JoinColumn(name= "user_id", nullable = false)
 	private User userDetails;
 
 	public Customer(String licenseNumber, User userDetails) {
