@@ -1,10 +1,16 @@
 package com.gearup.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gearup.dtos.OwnerDto;
 import com.gearup.services.OwnerService;
 
 import lombok.AllArgsConstructor;
@@ -14,15 +20,39 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class OwnerController {
 
-	private final OwnerService ownerService;
-	
-//	Get All Owners Details
-	@GetMapping("/getallowners")
-	public ResponseEntity<?> getAllOwners(){
-		
-		System.out.println("Get All Owner Method Called");
-		return ResponseEntity.ok(ownerService.getAllOwnerDetails());
-		
-	}
-	
+    private final OwnerService ownerService;
+
+    // Get All Owner Details
+    @GetMapping("/getallowners")
+    public ResponseEntity<?> getAllOwners() {
+
+        System.out.println("Get All Owner Method Called");
+        return ResponseEntity.ok(ownerService.getAllOwnerDetails());
+    }
+
+    // Register New Owner
+    @PostMapping("/register")
+    public ResponseEntity<?> registerOwner(
+            @RequestBody OwnerRegDto ownerDetails) {
+
+        System.out.println("Register Owner Method Called");
+        return ResponseEntity.ok(ownerService.registerOwner(ownerDetails));
+    }
+
+    // Update Owner Details
+    @PutMapping("/updateownerdetails")
+    public ResponseEntity<?> updateOwnerDetails(
+            @RequestBody OwnerRegDto ownerDetails) {
+
+        System.out.println("Update Owner Method Called");
+        return ResponseEntity.ok(ownerService.updateOwner(ownerDetails));
+    }
+
+    // Soft Delete Owner
+    @DeleteMapping("/deletemyaccount/{id}")
+    public ResponseEntity<?> deleteOwner(@PathVariable Long id) {
+
+        System.out.println("Delete Owner Method Called");
+        return ResponseEntity.ok(ownerService.deleteOwnerById(id));
+    }
 }
