@@ -1,7 +1,6 @@
 package com.gearup.entities;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalTime;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
@@ -9,7 +8,6 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,10 +36,13 @@ public class Garage extends BaseEntity{
 	private int totalMechanics;
 	
 	@Column(name="opening_time")
-	private LocalDate openingTime;
+	private LocalTime openingTime;
 	
 	@Column(name="closing_time")
-	private LocalDate closingTime;
+	private LocalTime closingTime;
+	
+	@Column(name="is_active")
+	private boolean isActive;
 	
 	@ManyToOne
 	@JoinColumn(name="owner_id", nullable = false)

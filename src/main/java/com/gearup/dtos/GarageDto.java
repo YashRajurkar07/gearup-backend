@@ -1,11 +1,9 @@
 package com.gearup.dtos;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.gearup.entities.Address;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +19,9 @@ public class GarageDto {
 	
 	private int totalMechanics;
 	
-	private LocalDate openingTime;
+	private LocalTime openingTime;
 	
-	private LocalDate closingTime;
+	private LocalTime closingTime;
+	
+	private boolean isActive;
 }

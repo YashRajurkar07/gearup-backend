@@ -20,39 +20,37 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class OwnerController {
 
-    private final OwnerService ownerService;
+	private final OwnerService ownerService;
 
-    // Get All Owner Details
-    @GetMapping("/getallowners")
-    public ResponseEntity<?> getAllOwners() {
+	// Get All Owner Details
+	@GetMapping("/getallowners")
+	public ResponseEntity<?> getAllOwners() {
 
-        System.out.println("Get All Owner Method Called");
-        return ResponseEntity.ok(ownerService.getAllOwnerDetails());
-    }
+		System.out.println("Get All Owner Method Called");
+		return ResponseEntity.ok(ownerService.getAllOwnerDetails());
+	}
 
-    // Register New Owner
-    @PostMapping("/register")
-    public ResponseEntity<?> registerOwner(
-            @RequestBody OwnerRegDto ownerDetails) {
+	// Register New Owner
+	@PostMapping("/register")
+	public ResponseEntity<?> registerNewOwner(@RequestBody OwnerDto ownerDetails) {
 
-        System.out.println("Register Owner Method Called");
-        return ResponseEntity.ok(ownerService.registerOwner(ownerDetails));
-    }
+		System.out.println("Register Owner Method Called");
+		return ResponseEntity.ok(ownerService.registerOwner(ownerDetails));
+	}
 
-    // Update Owner Details
-    @PutMapping("/updateownerdetails")
-    public ResponseEntity<?> updateOwnerDetails(
-            @RequestBody OwnerRegDto ownerDetails) {
+	// Update Owner Details
+	@PutMapping("/updateownerdetails/{oid}")
+	public ResponseEntity<?> updateOwnerDetails(@PathVariable Long oid, @RequestBody OwnerDto ownerDetails) {
 
-        System.out.println("Update Owner Method Called");
-        return ResponseEntity.ok(ownerService.updateOwner(ownerDetails));
-    }
+		System.out.println("Update Owner Method Called");
+		return ResponseEntity.ok(ownerService.updateOwner(oid, ownerDetails));
+	}
 
-    // Soft Delete Owner
-    @DeleteMapping("/deletemyaccount/{id}")
-    public ResponseEntity<?> deleteOwner(@PathVariable Long id) {
+	// Soft Delete Owner
+	@DeleteMapping("/deletemyaccount/{oid}")
+	public ResponseEntity<?> deleteOwner(@PathVariable Long oid) {
 
-        System.out.println("Delete Owner Method Called");
-        return ResponseEntity.ok(ownerService.deleteOwnerById(id));
-    }
+		System.out.println("Delete Owner Method Called");
+		return ResponseEntity.ok(ownerService.deleteOwnerById(oid));
+	}
 }

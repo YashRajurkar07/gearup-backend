@@ -42,8 +42,8 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		
 		Customer entity = mapper.map(customerDetails, Customer.class);
-		
 		entity.getUserDetails().setRole(UserRole.ROLE_CUSTOMER);
+		entity.getUserDetails().setActive(true);
 		
 		Customer persistantData = customerRepo.save(entity);
 		
@@ -69,7 +69,6 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer existingCustomer = customerRepo.findById(custId).orElseThrow(() -> new ResourceNotFoundException("Customer with Id "+custId+" Does Not Exists"));
 		
 		existingCustomer.getUserDetails().setActive(false);
-		
 		customerRepo.save(existingCustomer);
 		
 		return new ApiResponse("Customer With ID : "+custId+" Deleted Successfully", "Success");

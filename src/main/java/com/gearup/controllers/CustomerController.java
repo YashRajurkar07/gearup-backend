@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.CustomerRegDto;
@@ -32,7 +31,7 @@ public class CustomerController {
 	
 //	Post New Customer Details
 	@PostMapping("/register")
-	public ResponseEntity<?> registerData(@RequestBody CustomerRegDto customerDetails){
+	public ResponseEntity<?> registerNewCustomer(@RequestBody CustomerRegDto customerDetails){
 		
 		System.out.println("Register Customer Method Called");
 		
@@ -58,9 +57,5 @@ public class CustomerController {
 		return ResponseEntity.ok(customerService.deleteCustomerById(id));
 		
 	}
-	
-//	@GetMapping("/getmessage")
-//	public String getTitle() {
-//		return "Success";
-//	}
+
 }
