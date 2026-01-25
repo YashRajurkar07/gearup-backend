@@ -1,6 +1,6 @@
 package com.gearup.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -26,9 +26,9 @@ public abstract class BaseEntity {
 
 	@CreationTimestamp
 	@Column(name = "created_on")
-	private LocalDate createdOn;
+	private LocalDateTime createdOn;
 
 	@UpdateTimestamp
 	@Column(name = "last_updated")
-	private LocalDate lastUpdated;
+	private LocalDateTime lastUpdated;
 }

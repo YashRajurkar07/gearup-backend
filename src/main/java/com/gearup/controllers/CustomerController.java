@@ -3,6 +3,7 @@ package com.gearup.controllers;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,17 +41,20 @@ public class CustomerController {
 	}
 	
 //	Update Customer Details
-	@PutMapping("/upatecustomerdetails")
-	public ResponseEntity<?> updateCustomerDetails(@RequestBody CustomerRegDto customerDetails){
+	@PutMapping("/upatecustomerdetails/{cid}")
+	public ResponseEntity<?> updateCustomerDetails( @PathVariable Long cid, @RequestBody CustomerRegDto customerDetails){
 		
+		System.out.println("Update Customer Method Called");
+		
+		return ResponseEntity.ok(customerService.updateCustomer(cid, customerDetails));
 	}
 	
 //	Soft Delete Customer Details
 	@DeleteMapping("/deletemyaccount/{id}")
-	public ResponseEntity<?> deleteCustomer(@RequestParam Long id){
+	public ResponseEntity<?> deleteCustomer(@PathVariable Long id){
 		
-		System.out.println("Register Customer Method Called");
-
+		System.out.println("Delete Customer Method Called");
+		
 		return ResponseEntity.ok(customerService.deleteCustomerById(id));
 		
 	}
