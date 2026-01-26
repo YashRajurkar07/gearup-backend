@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.gearup.entities.Status;
 
+import jakarta.validation.constraints.Future;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class AppointmentDto {
 	
-
+	@Future
 	private LocalDate appointmentDate;
 	
 	private Status status;

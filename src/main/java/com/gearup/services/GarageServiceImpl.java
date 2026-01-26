@@ -39,7 +39,7 @@ public class GarageServiceImpl implements GarageService {
         return garageRepo.findByOwner(owner); 
 	}
 	
-//	Regiter New Garage
+//	Register New Garage
 	@Override
 	public ApiResponse registerNewGarage(GarageDto garageDetails) {
 		// TODO Auto-generated method stub

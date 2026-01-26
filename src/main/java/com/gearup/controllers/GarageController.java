@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gearup.dtos.GarageDto;
 import com.gearup.services.GarageService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -40,14 +41,14 @@ public class GarageController {
 	
 //	Register New Garage
     @PostMapping("/registergarage")
-    public ResponseEntity<?> registerGarage(@RequestBody GarageDto garageDetails){
+    public ResponseEntity<?> registerGarage(@Valid @RequestBody GarageDto garageDetails){
         System.out.println("Register Garage Method Called");
         return ResponseEntity.ok(garageService.registerNewGarage(garageDetails));
     }
 	
 //    Update Garage Details
     @PutMapping("/updategarage/{garageId}")
-    public ResponseEntity<?> updateGarage(@PathVariable Long garageId, @RequestBody GarageDto garageDetails){
+    public ResponseEntity<?> updateGarage(@PathVariable Long garageId, @Valid @RequestBody GarageDto garageDetails){
         System.out.println("Update Garage Method Called");
         return ResponseEntity.ok(garageService.updateGarageDetails(garageId, garageDetails));
     }

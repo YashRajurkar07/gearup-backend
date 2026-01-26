@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gearup.dtos.CustomerRegDto;
 import com.gearup.services.CustomerService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -29,9 +30,17 @@ public class CustomerController {
 		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
 	}
 	
+//	Get Customer By Customer Id
+	@GetMapping("/getcustomerbyid/{cid}")
+	public ResponseEntity<?> getCustomerById(@PathVariable Long cid){
+		System.out.println("Get Customer By Id Method Called");
+		
+		return ResponseEntity.ok(customerService.getCustomerByCustomerId(cid));
+	}
+	
 //	Post New Customer Details
 	@PostMapping("/register")
-	public ResponseEntity<?> registerNewCustomer(@RequestBody CustomerRegDto customerDetails){
+	public ResponseEntity<?> registerNewCustomer(@Valid @RequestBody CustomerRegDto customerDetails){
 		
 		System.out.println("Register Customer Method Called");
 		
@@ -41,7 +50,7 @@ public class CustomerController {
 	
 //	Update Customer Details
 	@PutMapping("/upatecustomerdetails/{cid}")
-	public ResponseEntity<?> updateCustomerDetails( @PathVariable Long cid, @RequestBody CustomerRegDto customerDetails){
+	public ResponseEntity<?> updateCustomerDetails(@PathVariable Long cid, @Valid @RequestBody CustomerRegDto customerDetails){
 		
 		System.out.println("Update Customer Method Called");
 		

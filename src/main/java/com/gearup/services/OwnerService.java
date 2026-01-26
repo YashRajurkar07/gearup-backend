@@ -2,8 +2,6 @@ package com.gearup.services;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
-
 import com.gearup.customAPIResponse.ApiResponse;
 import com.gearup.dtos.OwnerDto;
 import com.gearup.entities.Owner;

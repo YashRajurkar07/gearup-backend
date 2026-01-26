@@ -34,5 +34,4 @@ public class Customer extends BaseEntity {
 		this.userDetails = userDetails;
 	}
 	
-	
 }

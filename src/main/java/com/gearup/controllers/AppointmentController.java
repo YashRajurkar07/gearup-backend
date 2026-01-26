@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gearup.dtos.AppointmentDto;
 import com.gearup.services.AppointmentService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -40,7 +41,7 @@ public class AppointmentController {
 
 //	 Book New Appointment
 	@PostMapping("/bookappointment")
-	public ResponseEntity<?> bookAppointment(@RequestBody AppointmentDto appointmentDetails) {
+	public ResponseEntity<?> bookAppointment(@Valid @RequestBody AppointmentDto appointmentDetails) {
 
 		System.out.println("Book Appointment Method Called");
 		return ResponseEntity.ok(appointmentService.bookNewAppointment(appointmentDetails));
@@ -48,7 +49,7 @@ public class AppointmentController {
 
 //	 Update/Reschedule Appointment
 	@PutMapping("/updateappointment/{apptId}")
-	public ResponseEntity<?> updateAppointment(@PathVariable Long apptId, @RequestBody AppointmentDto appointmentDetails) {
+	public ResponseEntity<?> updateAppointment(@PathVariable Long apptId, @Valid @RequestBody AppointmentDto appointmentDetails) {
 
 		System.out.println("Update Appointment Method Called");
 		return ResponseEntity.ok(appointmentService.updateAppointment(apptId, appointmentDetails));

@@ -10,7 +10,6 @@ import com.gearup.customAPIResponse.ApiResponse;
 import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.customExceptions.ResourceNotFoundException;
 import com.gearup.dtos.OwnerDto;
-import com.gearup.dtos.UserDto;
 import com.gearup.entities.Owner;
 import com.gearup.entities.UserRole;
 import com.gearup.repositories.OwnerRepository;

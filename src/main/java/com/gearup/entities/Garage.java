@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Garage extends BaseEntity{
 	
-	@Column(name="garage_name")
+	@Column(name="garage_name", length = 50)
 	private String garageName;
 	
 	@Embedded

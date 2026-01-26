@@ -33,6 +33,14 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerRepo.findAll();
 	}
 	
+//	Get Customer By Customer Id
+	@Override
+	public Customer getCustomerByCustomerId(Long custId) {
+		
+		Customer cust = customerRepo.findById(custId).orElseThrow(()-> new ResourceNotFoundException("Customer With ID : "+custId+" Not Found"));
+		return cust;
+	}
+	
 //	Post New Customer Details
 	@Override
 	public ApiResponse registerCustomer(CustomerRegDto customerDetails){

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gearup.dtos.OwnerDto;
 import com.gearup.services.OwnerService;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -32,7 +33,7 @@ public class OwnerController {
 
 	// Register New Owner
 	@PostMapping("/register")
-	public ResponseEntity<?> registerNewOwner(@RequestBody OwnerDto ownerDetails) {
+	public ResponseEntity<?> registerNewOwner(@Valid @RequestBody OwnerDto ownerDetails) {
 
 		System.out.println("Register Owner Method Called");
 		return ResponseEntity.ok(ownerService.registerOwner(ownerDetails));
@@ -40,7 +41,7 @@ public class OwnerController {
 
 	// Update Owner Details
 	@PutMapping("/updateownerdetails/{oid}")
-	public ResponseEntity<?> updateOwnerDetails(@PathVariable Long oid, @RequestBody OwnerDto ownerDetails) {
+	public ResponseEntity<?> updateOwnerDetails(@PathVariable Long oid, @Valid @RequestBody OwnerDto ownerDetails) {
 
 		System.out.println("Update Owner Method Called");
 		return ResponseEntity.ok(ownerService.updateOwner(oid, ownerDetails));

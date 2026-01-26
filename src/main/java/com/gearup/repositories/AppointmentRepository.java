@@ -10,5 +10,7 @@ import com.gearup.entities.Customer;
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
 
 	List<Appointment> findByCustomer(Customer customer);
+	
+	List<Appointment> findByGarageIdAndRatingIsNotNull(Long garageId);
 
 }
