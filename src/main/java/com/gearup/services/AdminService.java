@@ -15,5 +15,7 @@ public interface AdminService {
 	ApiResponse updateAdminDetails(Long adminId, AdminDto adminDetails);
 
 	ApiResponse deleteAdminById(Long adminId);
+
+	ApiResponse verifyGarageOwner(Long ownerId, boolean isVerified);
 	
 }

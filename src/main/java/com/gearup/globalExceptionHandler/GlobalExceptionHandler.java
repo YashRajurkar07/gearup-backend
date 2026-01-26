@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.gearup.customExceptions.InvalidDataException;
 import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.customExceptions.ResourceNotFoundException;
 
@@ -32,6 +33,11 @@ public class GlobalExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 	}
 	
+	@ExceptionHandler(InvalidDataException.class)
+	public ResponseEntity<?> handleInvalidDataException(InvalidDataException e){
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+	}
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<?> handleUncheckedExceptions(RuntimeException e){

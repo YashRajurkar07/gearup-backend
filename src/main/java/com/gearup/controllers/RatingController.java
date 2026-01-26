@@ -42,11 +42,5 @@ public class RatingController {
         System.out.println("Add Rating Method Called");
         return ResponseEntity.ok(ratingService.addNewRating(ratingDetails));
     }
-    
-//   Soft Delete a Rating
-//    @DeleteMapping("/deleterating/{ratingId}")
-//    public ResponseEntity<?> deleteRating(@PathVariable Long ratingId) {
-//        System.out.println("Delete Rating Method Called");
-//        return ResponseEntity.ok(ratingService.deleteRating(ratingId));
-//    }
+   
 }

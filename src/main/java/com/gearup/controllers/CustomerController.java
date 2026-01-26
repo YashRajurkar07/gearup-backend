@@ -64,7 +64,6 @@ public class CustomerController {
 		System.out.println("Delete Customer Method Called");
 		
 		return ResponseEntity.ok(customerService.deleteCustomerById(id));
-		
 	}
 
 }

@@ -38,4 +38,5 @@ public class Payment extends BaseEntity{
 
     @Column(nullable = false)
     private LocalDateTime paymentDateTime;
+    
 }

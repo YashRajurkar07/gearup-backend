@@ -47,10 +47,5 @@ public class Garage extends BaseEntity{
 	@ManyToOne
 	@JoinColumn(name="owner_id", nullable = false)
 	private Owner owner;
-	
-//	@OneToMany
-//	@JoinColumn(name="timeslot_id")
-//	private List<TimeSlot> timeslot;
-//	
 
 }

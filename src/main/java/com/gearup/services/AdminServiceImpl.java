@@ -11,8 +11,10 @@ import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.customExceptions.ResourceNotFoundException;
 import com.gearup.dtos.AdminDto;
 import com.gearup.entities.Admin;
+import com.gearup.entities.Owner;
 import com.gearup.entities.UserRole;
 import com.gearup.repositories.AdminRepository;
+import com.gearup.repositories.OwnerRepository;
 import com.gearup.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +26,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	private final UserRepository userRepo;
 	private final AdminRepository adminRepo;
+	private final OwnerRepository ownerRepo;
 	private final ModelMapper mapper;
 
 //	Get All Admin Details
@@ -76,4 +79,17 @@ public class AdminServiceImpl implements AdminService {
         return new ApiResponse("Admin with ID: " + adminId + " Deleted Successfully", "Success");
 	}
 
+//	Mark Garage Owner as Verified or Not
+	@Override
+	public ApiResponse verifyGarageOwner(Long ownerId, boolean isVerified) {
+		
+		Owner existingOwner = ownerRepo.findById(ownerId).orElseThrow(() -> new ResourceNotFoundException("Owner ID " + ownerId + " Not Found"));
+		
+		existingOwner.setVerified(isVerified);
+		ownerRepo.save(existingOwner);
+		
+		String statusMsg = isVerified ? "Verified" : "Unverified";
+		
+		return new ApiResponse("Owner ID " + ownerId + " is Now " + statusMsg, "Success");
+	}
 }

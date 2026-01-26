@@ -33,9 +33,5 @@ public class Owner extends BaseEntity{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id", nullable = false)
 	private User userDetails;
-	
-//	@OneToMany
-//	@JoinColumn(name="garage_id", nullable=false)
-//	private List<Garage> garage;
-	
+
 }

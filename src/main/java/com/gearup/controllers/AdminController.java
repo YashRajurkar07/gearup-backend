@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.AdminDto;
@@ -53,5 +54,12 @@ public class AdminController {
     	
         System.out.println("Delete Admin Method Called");
         return ResponseEntity.ok(adminService.deleteAdminById(adminId));
+    }
+    
+//	Mark Garage Owner as Verified or Not
+    @PutMapping("/verifyowner/{ownerId}")
+    public ResponseEntity<?> verifyOwner(@PathVariable Long ownerId, @RequestParam boolean status) {
+        
+        return ResponseEntity.ok(adminService.verifyGarageOwner(ownerId, status));
     }
 }
