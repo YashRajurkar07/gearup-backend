@@ -11,7 +11,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="ratings")
-@AttributeOverride(name="id", column=@Column(name="rating_id"))
+@AttributeOverride(name="id", column=@Column(name="rating_ids"))
 @Getter
 @Setter
 @NoArgsConstructor

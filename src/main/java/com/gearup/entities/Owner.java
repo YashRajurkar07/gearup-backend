@@ -5,7 +5,6 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -15,7 +14,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name="garage_owners")
-@AttributeOverride(name="id", column = @Column(name="owner_id"))
+@AttributeOverride(name="id", column = @Column(name="owner_ids"))
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +22,7 @@ import lombok.ToString;
 public class Owner extends BaseEntity{
 	
 	@Column(name="alternate_phone")
-	private int alternatePhone;
+	private String alternatePhone;
 	
 	@Column(name="is_verified")
 	private boolean isVerified;
@@ -35,8 +34,8 @@ public class Owner extends BaseEntity{
 	@JoinColumn(name="user_id", nullable = false)
 	private User userDetails;
 	
-	@OneToMany
-	@JoinColumn(name="garage_id", nullable=false)
-	private Garage garage;
+//	@OneToMany
+//	@JoinColumn(name="garage_id", nullable=false)
+//	private List<Garage> garage;
 	
 }

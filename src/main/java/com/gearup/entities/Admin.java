@@ -13,25 +13,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="customers")
-@AttributeOverride(name = "id", column = @Column(name="customer_ids"))
+@Table(name="admins")
+@AttributeOverride(name="id", column=@Column(name="admin_ids"))
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true, exclude="userDetails")
-public class Customer extends BaseEntity {
+public class Admin extends BaseEntity{
 
-	@Column(name="license_number")
-	private String licenseNumber;
-	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name= "user_id", nullable = false)
+	@JoinColumn(name="user_id", nullable = false)
 	private User userDetails;
-
-	public Customer(String licenseNumber, User userDetails) {
-		super();
-		this.licenseNumber = licenseNumber;
-		this.userDetails = userDetails;
-	}
 	
 }

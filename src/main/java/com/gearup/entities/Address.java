@@ -1,8 +1,12 @@
 package com.gearup.entities;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Embeddable
+@Getter
+@Setter
 public class Address {
 	
 	private String city;
@@ -10,6 +14,5 @@ public class Address {
 	private String country;
 	private String area;
 	private int zipCode;
-	
 	
 }
