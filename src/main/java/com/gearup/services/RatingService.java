@@ -13,5 +13,7 @@ public interface RatingService {
 	List<Rating> getRatingsByGarageId(Long garageId);
 
 	ApiResponse addNewRating(RatingDto ratingDetails);
+	
+	Double getAverageRatingForGarage(Long garageId);
 
 }

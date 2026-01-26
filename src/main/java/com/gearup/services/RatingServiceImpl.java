@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gearup.customAPIResponse.ApiResponse;
+import com.gearup.customExceptions.InvalidDataException;
+import com.gearup.customExceptions.ResourceAlreadyExistsException;
 import com.gearup.customExceptions.ResourceNotFoundException;
 import com.gearup.dtos.RatingDto;
-import com.gearup.entities.Garage;
+import com.gearup.entities.Appointment;
 import com.gearup.entities.Rating;
+import com.gearup.entities.Status;
 import com.gearup.repositories.AppointmentRepository;
-import com.gearup.repositories.GarageRepository;
 import com.gearup.repositories.RatingRepository;
 
 import lombok.AllArgsConstructor;
@@ -23,7 +25,6 @@ import lombok.AllArgsConstructor;
 public class RatingServiceImpl implements RatingService {
 
 	private final RatingRepository ratingRepo;
-	private final GarageRepository garageRepo;
 	private final AppointmentRepository appointmentRepo;
 	private final ModelMapper mapper;
 	
@@ -38,17 +39,39 @@ public class RatingServiceImpl implements RatingService {
 	@Override
 	public List<Rating> getRatingsByGarageId(Long garageId) {
 		
-		Garage garage = garageRepo.findById(garageId).orElseThrow(() -> new ResourceNotFoundException("Garage ID " + garageId + " Not Found"));
-        
-        return ratingRepo.findByGarage(garage);
+        return ratingRepo.findAllRatingsByGarageId(garageId);
 	}
 
 //	Add New Rating
 	@Override
 	public ApiResponse addNewRating(RatingDto ratingDetails) {
-		// TODO Auto-generated method stub
-//		-------------------------------------------------------------------------
-		return null;
+	
+		Appointment appointment = appointmentRepo.findById(ratingDetails.getAppointmentId()).orElseThrow(() -> new ResourceNotFoundException("Appointment ID " + ratingDetails.getAppointmentId() + " Not Found"));
+		
+		if(appointment.getStatus()!=Status.COMPLETED) {
+			throw new InvalidDataException("You Can Only Rate an Appointment That Has Been Completed");
+		}
+		
+		if (appointment.getRating() != null) {
+            throw new ResourceAlreadyExistsException("You Have Already Rated This Appointment");
+        }
+		
+		Rating newRating = mapper.map(ratingDetails, Rating.class);
+		Rating savedRating = ratingRepo.save(newRating);
+		
+		appointment.setRating(savedRating);
+		appointmentRepo.save(appointment);
+		
+		return new ApiResponse("Rating Submitted Successfully With Rating ID : "+savedRating.getId(), "Success");
+		
+	}
+	
+//	Get Average Rating For A Particular Garage
+	public Double getAverageRatingForGarage(Long garageId) {
+		
+		Double score = ratingRepo.getAverageRatingByGarageId(garageId);
+		
+		return (score != null) ? score : 0.0;
 	}
 
 }
