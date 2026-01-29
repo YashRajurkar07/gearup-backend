@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public List<Customer> getAllCustomerDetails() {
 		
-		return customerRepo.findAll();
+		return customerRepo.findByUserDetailsRole(UserRole.ROLE_CUSTOMER);
 	}
 	
 //	Get Customer By Customer Id

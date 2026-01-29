@@ -41,7 +41,7 @@ public class AdminController {
     }
 	
 //    Update Admin Details
-    @PutMapping("/updateadmin/{adminId}")
+    @PutMapping("/updateadmindetails/{adminId}")
     public ResponseEntity<?> updateAdmin(@PathVariable Long adminId, @Valid @RequestBody AdminDto adminDetails) {
     	
         System.out.println("Update Admin Method Called");

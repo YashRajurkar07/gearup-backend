@@ -68,7 +68,7 @@ public class GarageController {
 	}
 
 //    Update Garage Details
-	@PutMapping("/updategarage/{garageId}")
+	@PutMapping("/updategaragedetails/{garageId}")
 	public ResponseEntity<?> updateGarage(@PathVariable Long garageId, @Valid @RequestBody GarageDto garageDetails) {
 		System.out.println("Update Garage Method Called");
 		return ResponseEntity.ok(garageService.updateGarageDetails(garageId, garageDetails));
