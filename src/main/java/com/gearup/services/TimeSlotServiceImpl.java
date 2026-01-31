@@ -88,10 +88,11 @@ public class TimeSlotServiceImpl implements TimeSlotService {
 //	Delete Time Slot Permanently
 	@Override
 	public ApiResponse deleteTimeSlot(Long slotId) {
+		
 		TimeSlot existingSlot = timeSlotRepo.findById(slotId).orElseThrow(() -> new ResourceNotFoundException("Time Slot ID " + slotId + " Not Found"));
 
         if (existingSlot.isBooked()) {
-            throw new RuntimeException("Cannot delete this slot. It is currently booked by a customer. Cancel the appointment first.");
+            throw new RuntimeException("Cannot Delete This slot. It is Currently Booked By a Customer. Cancel the Appointment First.");
         }
 
         timeSlotRepo.delete(existingSlot);

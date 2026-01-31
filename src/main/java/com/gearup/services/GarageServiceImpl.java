@@ -86,6 +86,7 @@ public class GarageServiceImpl implements GarageService {
 		Owner owner = ownerRepo.findById(garageDetails.getOwnerId()).orElseThrow(()->new ResourceNotFoundException("Owner with ID " + garageDetails.getOwnerId() + " Does Not Exist"));
 		
 		newGarage.setOwner(owner);
+		newGarage.setActive(true);
 		
 		Garage persistantEntity = garageRepo.save(newGarage);
 		

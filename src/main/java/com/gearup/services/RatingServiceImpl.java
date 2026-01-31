@@ -67,6 +67,7 @@ public class RatingServiceImpl implements RatingService {
 	}
 	
 //	Get Average Rating For A Particular Garage
+	@Override
 	public Double getAverageRatingForGarage(Long garageId) {
 		
 		Double score = ratingRepo.getAverageRatingByGarageId(garageId);
