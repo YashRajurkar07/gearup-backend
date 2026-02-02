@@ -37,6 +37,15 @@ public class GarageServiceImpl implements GarageService {
 		return garageRepo.findAll();
 	}
 
+//	Get Garage By Garage ID
+	@Override
+	public Garage getGarageByGarageId(Long garageId) {
+		
+		Garage garage = garageRepo.findById(garageId).orElseThrow(() -> new ResourceNotFoundException("Garage ID " + garageId + " Not Found"));
+		
+		return garage;
+	}
+	
 //	Get Garage by Owner ID
 	@Override
 	public List<Garage> getGaragesByOwnerId(Long ownerId) {
@@ -139,4 +148,5 @@ public class GarageServiceImpl implements GarageService {
 		
 		return new GarageStatsDto(todaysAppointments, pendingrequests, totalRevenue, averageRating);
 	}
+
 }

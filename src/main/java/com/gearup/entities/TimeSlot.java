@@ -26,7 +26,7 @@ public class TimeSlot extends BaseEntity{
 	private LocalDateTime startTime;
 	
 	@Column(name="end_time", nullable=false)
-	private LocalDateTime EndTime;
+	private LocalDateTime endTime;
 	
 	@Column(name="is_booked", nullable=false)
 	private boolean isBooked;

@@ -29,5 +29,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 	
 	@Query("select sum(p.amount) from Appointment a join a.payment p where a.garage.id = :garageId and p.status = 'SUCCESS'")
 	double calculateTotalRevenue(Long garageId);
+
 	
 }

@@ -31,7 +31,7 @@ public class GarageController {
 
 		return ResponseEntity.ok(garageService.getAllGarageDetails());
 	}
-
+	
 //	Get Garages for a specific Owner
 	@GetMapping("/garagebyowner/{ownerId}")
 	public ResponseEntity<?> getGaragesByOwner(@PathVariable Long ownerId) {

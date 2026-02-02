@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.CustomerRegDto;
 import com.gearup.services.CustomerService;
+import com.gearup.services.GarageService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,13 +25,14 @@ import lombok.AllArgsConstructor;
 public class CustomerController {
 	
 	private final CustomerService customerService;
+	private final GarageService garageService;
 
 //	Get All Customer Details
-	@GetMapping("/getallcustomers")
-	public ResponseEntity<?> getAllCustomers(){
-		 System.out.println("Get All Customers Method Called");
-		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
-	}
+//	@GetMapping("/getallcustomers")
+//	public ResponseEntity<?> getAllCustomers(){
+//		 System.out.println("Get All Customers Method Called");
+//		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
+//	}
 	
 //	Get Customer By Customer Id
 	@GetMapping("/getcustomerbyid/{cid}")
@@ -66,6 +68,14 @@ public class CustomerController {
 		System.out.println("Delete Customer Method Called");
 		
 		return ResponseEntity.ok(customerService.deleteCustomerById(id));
+	}
+	
+//	Get Garage By Garage ID
+	@GetMapping("/garagebyid/{garageId}")
+	public ResponseEntity<?> getGarageById(@PathVariable Long garageId) {
+		
+		return ResponseEntity.ok(garageService.getGarageByGarageId(garageId));
+		
 	}
 
 }

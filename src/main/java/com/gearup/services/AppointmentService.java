@@ -2,9 +2,13 @@ package com.gearup.services;
 
 import java.util.List;
 
+import org.jspecify.annotations.Nullable;
+
 import com.gearup.customAPIResponse.ApiResponse;
 import com.gearup.dtos.AppointmentBookingDto;
 import com.gearup.entities.Appointment;
+
+import jakarta.validation.Valid;
 
 public interface AppointmentService {
 
@@ -25,5 +29,7 @@ public interface AppointmentService {
 	List<Appointment> getAppointmentHistory(Long custId);
 
 	ApiResponse markAppointmentCompleted(Long appointmentId);
+
+	ApiResponse updateAppointmentStatus(Long apptId, @Valid AppointmentBookingDto appointmentDetails);
 
 }

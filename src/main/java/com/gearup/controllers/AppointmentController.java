@@ -84,6 +84,14 @@ public class AppointmentController {
 		System.out.println("Update Appointment Method Called");
 		return ResponseEntity.ok(appointmentService.updateAppointment(apptId, appointmentDetails));
 	}
+	
+//	Update Status of The Appointment
+	@PutMapping("/updatestatus/{apptId}")
+	public ResponseEntity<?> updateAppointmentStatus(@PathVariable Long apptId, @Valid @RequestBody AppointmentBookingDto appointmentDetails) {
+
+		System.out.println("Update Appointment Method Called");
+		return ResponseEntity.ok(appointmentService.updateAppointmentStatus(apptId, appointmentDetails));
+	}
 
 //	 Cancel Appointment (Soft Delete)
 	@DeleteMapping("/cancelappointment/{apptId}")
