@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public ApiResponse updateCustomer(Long custId, CustomerRegDto customerDetails) {
 		
-		Customer existingCustomer = customerRepo.findById(custId).orElseThrow(()-> new ResourceNotFoundException("Customer with Id "+custId+" Does Not Exists"));
+		Customer existingCustomer = customerRepo.findByUserDetails_Id(custId).orElseThrow(()-> new ResourceNotFoundException("Customer with Id "+custId+" Does Not Exists"));
 		
 		mapper.map(customerDetails, existingCustomer);
 		customerRepo.save(existingCustomer);
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public ApiResponse deleteCustomerById(Long custId) {
 		
-		Customer existingCustomer = customerRepo.findById(custId).orElseThrow(() -> new ResourceNotFoundException("Customer with Id "+custId+" Does Not Exists"));
+		Customer existingCustomer = customerRepo.findByUserDetails_Id(custId).orElseThrow(() -> new ResourceNotFoundException("Customer with Id "+custId+" Does Not Exists"));
 		
 		existingCustomer.getUserDetails().setActive(false);
 		customerRepo.save(existingCustomer);

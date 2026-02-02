@@ -1,31 +1,39 @@
 package com.gearup.security.requestDto;
 
+import java.time.LocalDate;
+
 import com.gearup.entities.UserRole;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class SignupRequest {
     
+    // --- User Details ---
     @NotBlank
-    @Size(min = 2, max = 50)
     private String firstName;
-
     @NotBlank
-    @Size(min = 2, max = 50)
     private String lastName;
-
-    @NotBlank
-    @Size(max = 50)
-    @Email
+    @NotBlank @Email
     private String email;
-
     @NotBlank
-    @Size(min = 6, max = 40)
     private String password;
-    
+    private String mobileNumber;
+    private LocalDate dateOfBirth;
+    private String gender; 
     private UserRole role; 
+
+    // --- Address Details ---
+    private String city;
+    private String state;
+    private String country;
+    private String area;
+    private int zipCode;
+
+    // --- Specific Details ---
+    private String licenseNumber;      // For Customer
+    private String alternatePhone;     // For Owner
+    private String registrationNumber; // For Owner
 }

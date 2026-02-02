@@ -40,7 +40,7 @@ public class GarageServiceImpl implements GarageService {
 //	Get Garage by Owner ID
 	@Override
 	public List<Garage> getGaragesByOwnerId(Long ownerId) {
-		Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new ResourceNotFoundException("Owner ID " + ownerId + " Not Found"));
+		Owner owner = ownerRepo.findByUserDetails_Id(ownerId).orElseThrow(() -> new ResourceNotFoundException("Owner ID " + ownerId + " Not Found"));
 		
         return garageRepo.findByOwner(owner); 
 	}
@@ -83,7 +83,7 @@ public class GarageServiceImpl implements GarageService {
 	public ApiResponse registerNewGarage(GarageDto garageDetails) {
 		
 		Garage newGarage = mapper.map(garageDetails, Garage.class);
-		Owner owner = ownerRepo.findById(garageDetails.getOwnerId()).orElseThrow(()->new ResourceNotFoundException("Owner with ID " + garageDetails.getOwnerId() + " Does Not Exist"));
+		Owner owner = ownerRepo.findByUserDetails_Id(garageDetails.getOwnerId()).orElseThrow(()->new ResourceNotFoundException("Owner with ID " + garageDetails.getOwnerId() + " Does Not Exist"));
 		
 		newGarage.setOwner(owner);
 		newGarage.setActive(true);

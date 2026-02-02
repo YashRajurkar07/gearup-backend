@@ -86,7 +86,7 @@ public class AppointmentController {
 	}
 
 //	 Cancel Appointment (Soft Delete)
-	@DeleteMapping("/cancelAppointment/{apptId}")
+	@DeleteMapping("/cancelappointment/{apptId}")
 	public ResponseEntity<?> cancelAppointment(@PathVariable Long apptId) {
 
 		System.out.println("Cancel Appointment Method Called");

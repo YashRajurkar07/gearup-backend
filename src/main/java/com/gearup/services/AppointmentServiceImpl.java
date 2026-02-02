@@ -44,7 +44,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public List<Appointment> getAppointmentsByCustomerId(Long customerId) {
 		
-		Customer customer = customerRepo.findById(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer ID " + customerId + " Not Found"));
+		Customer customer = customerRepo.findByUserDetails_Id(customerId).orElseThrow(() -> new ResourceNotFoundException("Customer ID " + customerId + " Not Found"));
 		
 		return appointmentRepo.findByCustomer(customer); 
 	}
@@ -76,7 +76,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 	@Override
 	public ApiResponse bookNewAppointment(AppointmentBookingDto appointmentDetails) {
 
-		Customer customer = customerRepo.findById(appointmentDetails.getCustomerId()).orElseThrow(() -> new ResourceNotFoundException("Customer ID " + appointmentDetails.getCustomerId() + " Not Found"));
+		Customer customer = customerRepo.findByUserDetails_Id(appointmentDetails.getCustomerId()).orElseThrow(() -> new ResourceNotFoundException("Customer ID " + appointmentDetails.getCustomerId() + " Not Found"));
 		TimeSlot timeSlot = timeSlotRepo.findById(appointmentDetails.getTimeSlotId()).orElseThrow(() -> new ResourceNotFoundException("Time Slot ID " + appointmentDetails.getTimeSlotId() + " Not Found"));
 		if(timeSlot.isBooked()) {
 			throw new ResourceAlreadyExistsException("Time Slot Already Booked for This Time Period, Try Different Time Slot");
