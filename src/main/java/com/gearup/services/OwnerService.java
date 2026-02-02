@@ -16,4 +16,6 @@ public interface OwnerService {
 
 	ApiResponse deleteOwnerById(Long oid);
 
+	Owner getOwnerByOwnerId(Long oid);
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.OwnerDto;
+import com.gearup.services.GarageService;
 import com.gearup.services.OwnerService;
 
 import jakarta.validation.Valid;
@@ -22,15 +23,23 @@ import lombok.AllArgsConstructor;
 public class OwnerController {
 
 	private final OwnerService ownerService;
+	private final GarageService garageService;
 
 	// Get All Owner Details
-	@GetMapping("/getallowners")
-	public ResponseEntity<?> getAllOwners() {
+//	@GetMapping("/getallowners")
+//	public ResponseEntity<?> getAllOwners() {
+//
+//		System.out.println("Get All Owner Method Called");
+//		return ResponseEntity.ok(ownerService.getAllOwnerDetails());
+//	}
 
-		System.out.println("Get All Owner Method Called");
-		return ResponseEntity.ok(ownerService.getAllOwnerDetails());
+//	Get Owner By Owner ID
+	@GetMapping("/getownerbyid/:oid")
+	public ResponseEntity<?> getOwnerById(@PathVariable Long oid){
+		
+		return ResponseEntity.ok(ownerService.getOwnerByOwnerId(oid));
 	}
-
+	
 	// Register New Owner
 	@PostMapping("/register")
 	public ResponseEntity<?> registerNewOwner(@Valid @RequestBody OwnerDto ownerDetails) {
@@ -53,5 +62,13 @@ public class OwnerController {
 
 		System.out.println("Delete Owner Method Called");
 		return ResponseEntity.ok(ownerService.deleteOwnerById(oid));
+	}
+	
+//	Get Garage By Garage ID
+	@GetMapping("/garagebyid/{garageId}")
+	public ResponseEntity<?> getGarageById(@PathVariable Long garageId) {
+		
+		return ResponseEntity.ok(garageService.getGarageByGarageId(garageId));
+		
 	}
 }

@@ -1,6 +1,7 @@
 package com.gearup.controllers;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gearup.dtos.CustomerRegDto;
 import com.gearup.services.CustomerService;
+import com.gearup.services.GarageService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,16 +21,18 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/customer")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class CustomerController {
 	
 	private final CustomerService customerService;
+	private final GarageService garageService;
 
 //	Get All Customer Details
-	@GetMapping("/getallcustomers")
-	public ResponseEntity<?> getAllCustomers(){
-		 System.out.println("Get All Customers Method Called");
-		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
-	}
+//	@GetMapping("/getallcustomers")
+//	public ResponseEntity<?> getAllCustomers(){
+//		 System.out.println("Get All Customers Method Called");
+//		 return ResponseEntity.ok(customerService.getAllCustomerDetails());
+//	}
 	
 //	Get Customer By Customer Id
 	@GetMapping("/getcustomerbyid/{cid}")
@@ -49,7 +53,7 @@ public class CustomerController {
 	}
 	
 //	Update Customer Details
-	@PutMapping("/upatecustomerdetails/{cid}")
+	@PutMapping("/updatecustomerdetails/{cid}")
 	public ResponseEntity<?> updateCustomerDetails(@PathVariable Long cid, @Valid @RequestBody CustomerRegDto customerDetails){
 		
 		System.out.println("Update Customer Method Called");
@@ -64,6 +68,14 @@ public class CustomerController {
 		System.out.println("Delete Customer Method Called");
 		
 		return ResponseEntity.ok(customerService.deleteCustomerById(id));
+	}
+	
+//	Get Garage By Garage ID
+	@GetMapping("/garagebyid/{garageId}")
+	public ResponseEntity<?> getGarageById(@PathVariable Long garageId) {
+		
+		return ResponseEntity.ok(garageService.getGarageByGarageId(garageId));
+		
 	}
 
 }

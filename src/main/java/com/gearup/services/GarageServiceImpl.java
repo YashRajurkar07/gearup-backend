@@ -37,10 +37,19 @@ public class GarageServiceImpl implements GarageService {
 		return garageRepo.findAll();
 	}
 
+//	Get Garage By Garage ID
+	@Override
+	public Garage getGarageByGarageId(Long garageId) {
+		
+		Garage garage = garageRepo.findById(garageId).orElseThrow(() -> new ResourceNotFoundException("Garage ID " + garageId + " Not Found"));
+		
+		return garage;
+	}
+	
 //	Get Garage by Owner ID
 	@Override
 	public List<Garage> getGaragesByOwnerId(Long ownerId) {
-		Owner owner = ownerRepo.findById(ownerId).orElseThrow(() -> new ResourceNotFoundException("Owner ID " + ownerId + " Not Found"));
+		Owner owner = ownerRepo.findByUserDetails_Id(ownerId).orElseThrow(() -> new ResourceNotFoundException("Owner ID " + ownerId + " Not Found"));
 		
         return garageRepo.findByOwner(owner); 
 	}
@@ -83,9 +92,10 @@ public class GarageServiceImpl implements GarageService {
 	public ApiResponse registerNewGarage(GarageDto garageDetails) {
 		
 		Garage newGarage = mapper.map(garageDetails, Garage.class);
-		Owner owner = ownerRepo.findById(garageDetails.getOwnerId()).orElseThrow(()->new ResourceNotFoundException("Owner with ID " + garageDetails.getOwnerId() + " Does Not Exist"));
+		Owner owner = ownerRepo.findByUserDetails_Id(garageDetails.getOwnerId()).orElseThrow(()->new ResourceNotFoundException("Owner with ID " + garageDetails.getOwnerId() + " Does Not Exist"));
 		
 		newGarage.setOwner(owner);
+		newGarage.setActive(true);
 		
 		Garage persistantEntity = garageRepo.save(newGarage);
 		
@@ -138,4 +148,5 @@ public class GarageServiceImpl implements GarageService {
 		
 		return new GarageStatsDto(todaysAppointments, pendingrequests, totalRevenue, averageRating);
 	}
+
 }

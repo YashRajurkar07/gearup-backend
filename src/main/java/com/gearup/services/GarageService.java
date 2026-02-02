@@ -2,6 +2,8 @@ package com.gearup.services;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.gearup.customAPIResponse.ApiResponse;
 import com.gearup.dtos.GarageDto;
 import com.gearup.dtos.GarageStatsDto;
@@ -19,6 +21,8 @@ public interface GarageService {
 	
 	List<String> getAllAreasOfGarages();
 	
+	Garage getGarageByGarageId(Long garageId);
+	
 	ApiResponse registerNewGarage(GarageDto garageDetails);
 
 	ApiResponse updateGarageDetails(Long garageId, GarageDto garageDetails);
@@ -26,5 +30,6 @@ public interface GarageService {
 	ApiResponse deleteGarageById(Long garageId);
 
 	GarageStatsDto getGarageStatistics(Long garageId);
+
 
 }

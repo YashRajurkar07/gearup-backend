@@ -33,6 +33,15 @@ public class OwnerServiceImpl implements OwnerService {
 		return ownerRepo.findAll();
 		
 	}
+	
+//	Get Owner By Owner ID
+	@Override
+	public Owner getOwnerByOwnerId(Long oid) {
+		
+		Owner owner = ownerRepo.findByUserDetails_Id(oid).orElseThrow(()-> new ResourceNotFoundException("Owner with Id "+oid+" Does Not Exists"));
+		
+		return owner;
+	}
 
 //	Register New Owner
 	@Override
@@ -54,7 +63,7 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public ApiResponse updateOwner(Long oId, OwnerDto ownerDetails) {
 		
-		Owner existingOwner = ownerRepo.findById(oId).orElseThrow(()-> new ResourceNotFoundException("Owner with Id "+oId+" Does Not Exists"));
+		Owner existingOwner = ownerRepo.findByUserDetails_Id(oId).orElseThrow(()-> new ResourceNotFoundException("Owner with Id "+oId+" Does Not Exists"));
 		
 		mapper.map(ownerDetails, existingOwner);
 		ownerRepo.save(existingOwner);
@@ -66,7 +75,7 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public ApiResponse deleteOwnerById(Long oId) {
 
-		Owner existingOwner = ownerRepo.findById(oId).orElseThrow(()-> new ResourceNotFoundException("Owner with Id "+oId+" Does Not Exists"));
+		Owner existingOwner = ownerRepo.findByUserDetails_Id(oId).orElseThrow(()-> new ResourceNotFoundException("Owner with Id "+oId+" Does Not Exists"));
 		
 		existingOwner.getUserDetails().setActive(false);
 		ownerRepo.save(existingOwner);

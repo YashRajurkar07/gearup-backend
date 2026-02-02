@@ -14,7 +14,7 @@ public class TimeSlotDto {
 	
 	private LocalDateTime startTime;
 
-	private LocalDateTime EndTime;
+	private LocalDateTime endTime;
 
 	@NotNull
 	private boolean isBooked;

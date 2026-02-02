@@ -31,7 +31,7 @@ public class TimeSlotController {
 	}
 	
 //	Get All Slots for a Garage 
-    @GetMapping("/timeslotsforgarage/{garageId}")
+    @GetMapping("/garagetimeslots/{garageId}")
     public ResponseEntity<?> getSlotsByGarage(@PathVariable Long garageId) {
     	
         System.out.println("Get Garage Slots Method Called");
@@ -39,7 +39,7 @@ public class TimeSlotController {
     }
     
 //    Get Only Available Slots
-    @GetMapping("/timeslotsforgarage/{garageId}/available")
+    @GetMapping("/garagetimeslots/{garageId}/available")
     public ResponseEntity<?> getAvailableSlots(@PathVariable Long garageId) {
         System.out.println("Get Available Slots Method Called");
         return ResponseEntity.ok(timeSlotService.getAvailableSlotsByGarage(garageId));
@@ -61,7 +61,7 @@ public class TimeSlotController {
         return ResponseEntity.ok(timeSlotService.updateTimeSlotDetails(slotId, slotDetails));
     }
     
-//    Soft Delete TimeSlot
+//    Delete Time Slot Permanently
     @DeleteMapping("/deletetimeslot/{slotId}")
     public ResponseEntity<?> deleteTimeSlot(@PathVariable Long slotId) {
     	
