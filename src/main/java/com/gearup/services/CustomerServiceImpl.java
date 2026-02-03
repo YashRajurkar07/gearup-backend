@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getCustomerByCustomerId(Long custId) {
 		
-		Customer cust = customerRepo.findById(custId).orElseThrow(()-> new ResourceNotFoundException("Customer With ID : "+custId+" Not Found"));
+		Customer cust = customerRepo.findByUserDetails_Id(custId).orElseThrow(()-> new ResourceNotFoundException("Customer With ID : "+custId+" Not Found"));
 		return cust;
 	}
 	

@@ -34,7 +34,7 @@ public class OwnerController {
 //	}
 
 //	Get Owner By Owner ID
-	@GetMapping("/getownerbyid/:oid")
+	@GetMapping("/getownerbyid/{oid}")
 	public ResponseEntity<?> getOwnerById(@PathVariable Long oid){
 		
 		return ResponseEntity.ok(ownerService.getOwnerByOwnerId(oid));
